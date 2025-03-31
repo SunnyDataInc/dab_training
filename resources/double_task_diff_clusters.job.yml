@@ -1,0 +1,32 @@
+# The main job for init_project.
+resources:
+  jobs:
+    double_task_diff_cluster_job:
+      name: double_task_diff_cluster_job
+      description: This job contains 2 notebook-tasks, each with their own cluster configuration.
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      email_notifications:
+        on_failure:
+          - david.flores@sunnydata.ai
+
+      tasks:
+        - task_key: notebook1_task
+          job_cluster_key: job_cluster_1 # this task uses a job_cluster defined in clusters/dab_clusters.yml
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb
+        - task_key: notebook2_task
+          existing_cluster_id: ${var.existing_cluster} # this task uses an existing all-purpose compute cluster
+          depends_on:
+            - task_key: notebook1_task
+          notebook_task:
+            notebook_path: ../src/notebook_2.ipynb
+      
+      job_clusters:
+        - job_cluster_key: job_cluster_1
+          new_cluster: ${var.dab_cluster_task_1}
