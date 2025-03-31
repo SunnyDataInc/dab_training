@@ -1,0 +1,32 @@
+# The main job for init_project.
+resources:
+  jobs:
+    passing_parameters_between_jobs:
+      name: passing_parameters_between_jobs
+      description: This serverless job contains 2 notebook-tasks that consume external parameters and share paremeters
+      tags:
+        group: dabs_tutorial
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      email_notifications:
+        on_failure:
+          - david.flores@sunnydata.ai
+
+      tasks:
+        - task_key: job_1_task_1
+          notebook_task:
+            notebook_path: ../src/notebook_parameter.ipynb
+            base_parameters:
+              notebook_param: "my test parameter"
+        - task_key: trigger_job_2
+          depends_on:
+            - task_key: job_1_task_1
+          run_job_task:
+            job_id: ${resources.jobs.job_2.id}
+            job_parameters:
+              from_job_1_task_1: "{{tasks.job_1_task_1.values.from_t1}}"
