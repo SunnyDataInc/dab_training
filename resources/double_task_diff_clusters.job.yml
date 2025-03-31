@@ -19,13 +19,11 @@ resources:
         - task_key: notebook1_task
           job_cluster_key: job_cluster_1 # this task uses a job_cluster defined in clusters/dab_clusters.yml
           notebook_task:
-            notebook_path: ../src/notebook.ipynb
+            notebook_path: ../src/notebook_2.ipynb
         - task_key: notebook2_task
           existing_cluster_id: ${var.existing_cluster} # this task uses an existing all-purpose compute cluster
-          depends_on:
-            - task_key: notebook1_task
           notebook_task:
-            notebook_path: ../src/notebook_2.ipynb
+            notebook_path: ../src/notebook_3.ipynb
       
       job_clusters:
         - job_cluster_key: job_cluster_1
