@@ -4,6 +4,8 @@ resources:
     simple_serverless_job:
       name: simple_serverless_job
       description: This serverless job contains only 1 notebook task
+      tags:
+        group: dabs_tutorial
 
       trigger:
         # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger

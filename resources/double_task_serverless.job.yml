@@ -4,6 +4,8 @@ resources:
     double_task_serverless_job:
       name: double_task_serverless_job
       description: This serverless job contains 2 notebook-tasks
+      tags:
+        group: dabs_tutorial
 
       trigger:
         # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
