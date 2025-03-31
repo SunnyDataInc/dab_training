@@ -7,6 +7,15 @@ bundle:
 include:
   - resources/*.yml
   - clusters/*.yml
+  - notebooks/*.yml
+
+variables:
+  dab_notebook:
+    description: Example for using variables for a notebook_path
+    default: ../notebooks/hello.ipynb
+  cluster_variable:
+    description: example of a cluster-specific variable
+    default: I can be used for spark configuration variables or spark environment variables
 
 targets:
   dev:

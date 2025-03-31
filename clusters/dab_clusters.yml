@@ -4,10 +4,14 @@ variables:
     type: complex
     default:
       spark_version: 15.4.x-scala2.12
-      node_type_id: i3.xlarge
+      node_type_id: r5d.large
       autoscale:
-          min_workers: 1
-          max_workers: 1
+        min_workers: 1
+        max_workers: 1
+      spark_conf:
+        conf_var: ${var.cluster_variable}
+      spark_env_vars:
+        env_var: ${var.cluster_variable}
   
   existing_cluster:
     description: my existing cluster
