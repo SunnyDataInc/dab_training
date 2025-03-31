@@ -1,0 +1,21 @@
+# The main job for init_project.
+resources:
+  jobs:
+    simple_serverless_job:
+      name: simple_serverless_job
+      description: This serverless job contains only 1 notebook task
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      email_notifications:
+        on_failure:
+          - david.flores@sunnydata.ai
+
+      tasks:
+        - task_key: notebook_task
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb

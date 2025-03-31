@@ -1,0 +1,31 @@
+# The main job for init_project.
+resources:
+  jobs:
+    conditional_dependency_task_serverless_job:
+      name: conditional_dependency_task_serverless_job
+      description: This serverless job contains 2 notebook-tasks
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      email_notifications:
+        on_failure:
+          - david.flores@sunnydata.ai
+
+      tasks:
+        - task_key: notebook1_task
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb
+        - task_key: notebook2_task
+          notebook_task:
+            notebook_path: ../src/notebook_2.ipynb
+        - task_key: notebook3_task
+          depends_on:
+            - task_key: notebook1_task
+            - task_key: notebook2_task
+          run_if: AT_LEAST_ONE_SUCCESS
+          notebook_task:
+            notebook_path: ../src/notebook_3.ipynb
