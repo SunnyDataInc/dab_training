@@ -53,7 +53,7 @@ jobs:
 
       # Run the Databricks workflow named "simple_serverless" as defined in the
       # bundle that was just deployed.
-      - run: databricks bundle run simple_serverless --refresh-all
+      - run: databricks bundle run simple_serverless_job --refresh-all
         working-directory: dab_examples
         env:
           DATABRICKS_TOKEN: ${{ secrets.DF_TOKEN }}
