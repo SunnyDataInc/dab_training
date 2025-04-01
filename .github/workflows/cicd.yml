@@ -7,7 +7,9 @@ concurrency: "1"
 
   # Trigger this workflow whenever a pull request is opened against the repo's
   # main branch or  an existing pull request's head branch is updated.
-on: [push]
+on:
+  pull_request:
+    branches: [main]
 
 jobs:
   # Used by the "pipeline_update" job to deploy the bundle.
@@ -34,9 +36,9 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.DF_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
 
-  # Validate, delpoy and then run the bundle.
+  # Validate, deploy and then run the bundle.
   pipeline_update:
-    name: "Run pipleine update"    
+    name: "Run pipeline update"    
     runs-on: ubuntu-latest
     environment: dev
 
