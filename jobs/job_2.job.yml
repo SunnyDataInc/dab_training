@@ -6,6 +6,7 @@ resources:
       description: This serverless job contains only 1 notebook task
       tags:
         group: dabs_tutorial
+        repo: ${var.repo_name}
 
       email_notifications:
         on_failure:

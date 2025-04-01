@@ -1,7 +1,7 @@
 # This is a Databricks asset bundle definition for init_project.
 # See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
 bundle:
-  name: init_project
+  name: dab_examples
   uuid: fc1bc42a-055a-4875-994a-94c5b36f7824
 
 include:
@@ -12,11 +12,14 @@ include:
 
 variables:
   dab_notebook:
-    description: Example for using variables for a notebook_path
+    description: Example for using variables for a notebook_path.
     default: ../notebooks/reading_spark_parameters.ipynb
   cluster_variable:
-    description: Example of a cluster-specific variable. It can be used for spark configuration variables or spark environment variables
+    description: Example of a cluster-specific variable. It can be used for spark configuration variables or spark environment variables.
     default: 'secret_spark_variable'
+  repo_name:
+    description: The github repo of this project.
+    default: dab_training
 
 targets:
   dev:

@@ -6,6 +6,7 @@ resources:
       description: This job uses variables from the spark configuration as well as from the spark environment.
       tags:
         group: dabs_tutorial
+        repo: ${var.repo_name}
 
       trigger:
         # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
