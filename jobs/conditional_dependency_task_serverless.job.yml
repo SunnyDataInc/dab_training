@@ -20,14 +20,14 @@ resources:
       tasks:
         - task_key: notebook1_task
           notebook_task:
-            notebook_path: ../src/notebook.ipynb
+            notebook_path: ../notebooks/notebook.ipynb
         - task_key: notebook2_task
           notebook_task:
-            notebook_path: ../src/notebook_2.ipynb
+            notebook_path: ../notebooks/notebook_2.ipynb
         - task_key: notebook3_task
           depends_on:
             - task_key: notebook1_task
             - task_key: notebook2_task
           run_if: AT_LEAST_ONE_SUCCESS
           notebook_task:
-            notebook_path: ../src/notebook_3.ipynb
+            notebook_path: ../notebooks/notebook_3.ipynb

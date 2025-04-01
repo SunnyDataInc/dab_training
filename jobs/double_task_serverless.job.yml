@@ -1,9 +1,9 @@
 # The main job for init_project.
 resources:
   jobs:
-    simple_parameter_job:
-      name: simple_parameter_job
-      description: This serverless job contains only 1 notebook task
+    double_task_serverless_job:
+      name: double_task_serverless_job
+      description: This serverless job contains 2 notebook-tasks
       tags:
         group: dabs_tutorial
 
@@ -18,8 +18,11 @@ resources:
           - david.flores@sunnydata.ai
 
       tasks:
-        - task_key: notebook_task
+        - task_key: notebook1_task
           notebook_task:
-            notebook_path: ../src/notebook_parameter.ipynb
-            base_parameters:
-              notebook_param: "my test parameter"
+            notebook_path: ../notebooks/notebook.ipynb
+        - task_key: notebook2_task
+          depends_on:
+            - task_key: notebook1_task
+          notebook_task:
+            notebook_path: ../notebooks/notebook_2.ipynb

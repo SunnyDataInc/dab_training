@@ -8,13 +8,14 @@ include:
   - resources/*.yml
   - clusters/*.yml
   - notebooks/*.yml
+  - jobs/*.yml
 
 variables:
   dab_notebook:
     description: Example for using variables for a notebook_path
     default: ../notebooks/reading_spark_parameters.ipynb
   cluster_variable:
-    description: Example of a cluster-specific variable. I can be used for spark configuration variables or spark environment variables
+    description: Example of a cluster-specific variable. It can be used for spark configuration variables or spark environment variables
     default: 'secret_spark_variable'
 
 targets:

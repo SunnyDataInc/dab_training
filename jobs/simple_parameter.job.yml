@@ -1,8 +1,8 @@
 # The main job for init_project.
 resources:
   jobs:
-    simple_serverless_job:
-      name: simple_serverless_job
+    simple_parameter_job:
+      name: simple_parameter_job
       description: This serverless job contains only 1 notebook task
       tags:
         group: dabs_tutorial
@@ -20,4 +20,6 @@ resources:
       tasks:
         - task_key: notebook_task
           notebook_task:
-            notebook_path: ../src/notebook.ipynb
+            notebook_path: ../notebooks/notebook_parameter.ipynb
+            base_parameters:
+              notebook_param: "my test parameter"

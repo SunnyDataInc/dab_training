@@ -14,4 +14,4 @@ resources:
       tasks:
         - task_key: job_2_task_1
           notebook_task:
-            notebook_path: ../src/notebook_job_parameter.ipynb
+            notebook_path: ../notebooks/notebook_job_parameter.ipynb
