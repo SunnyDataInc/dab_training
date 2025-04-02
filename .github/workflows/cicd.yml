@@ -14,7 +14,7 @@ on:
 jobs:
   # Used by the "pipeline_update" job to deploy the bundle.
   # Bundle validation is automatically performed as part of this deployment.
-  # If the validation fails, this workflow fails.
+  # If the validation fails, this workflow will fail.
   deploy:
     name: "Deploy bundle"
     runs-on: ubuntu-latest
