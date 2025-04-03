@@ -49,13 +49,8 @@ jobs:
 
       # Download the Databricks CLI.
       # See https://github.com/databricks/setup-cli
-      # See https://github.com/databricks/setup-cli
       - uses: databricks/setup-cli@main
 
-      # Deploy the bundle to the "dev" target as defined
-      # in the bundle's settings file.
-      - run: databricks bundle deploy
-        working-directory: yellow_nyc
       # Deploy the bundle to the "dev" target as defined
       # in the bundle's settings file.
       - run: databricks bundle deploy
@@ -63,31 +58,6 @@ jobs:
         env:
           DATABRICKS_TOKEN: ${{ secrets.DF_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
-
-  # # Validate, deploy and then run the bundle.
-  # pipeline_update:
-  #   name: "Run pipeline update"    
-  #   runs-on: ubuntu-latest
-  #   environment: dev
-
-  #   # Run the "deploy" job first
-  #   needs:
-  #     - deploy
-    
-  #   steps:
-  #     # Check out this repo, so that this workflow can access it.
-  #     - uses: actions/checkout@v3
-
-  #     # Download the Databricks CLI.
-  #     - uses: databricks/setup-cli@main
-
-  #     # Run the Databricks workflow named "simple_serverless" as defined in the
-  #     # bundle that was just deployed.
-  #     - run: databricks bundle run simple_serverless_job --refresh-all
-  #       working-directory: dab_examples
-  #       env:
-  #         DATABRICKS_TOKEN: ${{ secrets.DF_TOKEN }}
-  #         DATABRICKS_BUNDLE_ENV: dev
 
   # # Validate, deploy and then run the bundle.
   # pipeline_update:
