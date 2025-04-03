@@ -12,11 +12,8 @@ on:
     branches: [main]
 
 jobs:
-  # Used by the "pipeline_update" job to deploy the bundle.
   # Bundle validation is automatically performed as part of this deployment.
   # If the validation fails, this workflow fails.
-  validate:
-    name: "Validate bundle"
   validate:
     name: "Validate bundle"
     runs-on: ubuntu-latest
@@ -39,16 +36,11 @@ jobs:
 
   deploy:
     name: "Deploy bundle"
-  deploy:
-    name: "Deploy bundle"
     runs-on: ubuntu-latest
     environment: dev
 
     # Run the "validate" job first
-    # Run the "validate" job first
     needs:
-      - validate
-
       - validate
 
     steps:
