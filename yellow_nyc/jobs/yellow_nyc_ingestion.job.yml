@@ -23,9 +23,9 @@ resources:
           notebook_task:
             notebook_path: ../notebooks/create_env_raw_table.ipynb
             base_parameters:
-              catalog: "{{var.catalog}}"
-              schema: "{{var.raw_schema}}"
-              table: "{{var.table}}"
+              catalog: ${var.catalog}
+              schema: ${var.raw_schema}
+              table: ${var.table}
         - task_key: load_raw_table
           depends_on:
             - task_key: create_env_raw_table
