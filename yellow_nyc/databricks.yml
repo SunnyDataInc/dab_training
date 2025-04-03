@@ -1,0 +1,45 @@
+# This is a Databricks asset bundle definition for yellow_nyc.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: yellow_nyc
+  uuid: a8773498-5f57-485d-8750-40c3ca8b5e4e
+
+include:
+  - resources/*.yml
+  - notebooks/*.yml
+  - jobs/*.yml
+
+variables:
+  catalog:
+    description: Catalog for this dab package.
+    default: dflores
+  raw_schema:
+    description: Schema for ingestion tables.
+    default: raw
+  table:
+    description: Ingestion table for the yellow nyc taxi trips.
+    default: yellow_nyc
+  repo_name:
+    description: The github repo of this project.
+    default: dab_training
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-56f60291-144c.cloud.databricks.com
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-56f60291-144c.cloud.databricks.com
+      # We explicitly deploy to /Workspace/Users/david.flores@sunnydata.ai to make sure we only have a single copy.
+      root_path: /Workspace/Users/david.flores@sunnydata.ai/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: david.flores@sunnydata.ai
+        level: CAN_MANAGE

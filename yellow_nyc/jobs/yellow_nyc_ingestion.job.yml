@@ -1,0 +1,37 @@
+# The main job for init_project.
+resources:
+  jobs:
+    yellow_nyc_ingestion:
+      name: yellow_nyc_ingestion
+      description: Dab_demo for yellow nyc taxi data
+      tags:
+        group: dabs_demo
+        repo: ${var.repo_name}
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      email_notifications:
+        on_failure:
+          - david.flores@sunnydata.ai
+
+      tasks:
+        - task_key: create_env_raw_table
+          notebook_task:
+            notebook_path: ../notebooks/create_env_raw_table.ipynb
+            base_parameters:
+              catalog: "{{var.catalog}}"
+              schema: "{{var.raw_schema}}"
+              table: "{{var.table}}"
+        - task_key: load_raw_table
+          depends_on:
+            - task_key: create_env_raw_table
+          notebook_task:
+            notebook_path: ../notebooks/load_raw_table.ipynb
+            base_parameters:
+              checkpoint_path: "{{tasks.create_env_raw_table.values.checkpoint_path}}"
+              file_path: "{{tasks.create_env_raw_table.values.file_path}}"
+              full_table_name: "{{tasks.create_env_raw_table.values.full_table_name}}"
