@@ -26,6 +26,8 @@ resources:
               catalog: ${var.catalog}
               schema: ${var.raw_schema}
               table: ${var.table}
+              job_id: {{job_id}}
+              job_run_id: {{run_id}}
 
         - task_key: load_raw_table
           depends_on:
