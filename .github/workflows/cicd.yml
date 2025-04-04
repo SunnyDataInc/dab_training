@@ -16,8 +16,6 @@ jobs:
   # If the validation fails, this workflow fails.
   validate:
     name: "Validate bundle"
-  validate:
-    name: "Validate bundle"
     runs-on: ubuntu-latest
     environment: dev
 
@@ -30,7 +28,7 @@ jobs:
       - uses: databricks/setup-cli@main
 
       # Validate the bundle before deploying
-      - run: databricks bundle validate -o json
+      - run: databricks bundle validate
         working-directory: yellow_nyc
         env:
           DATABRICKS_TOKEN: ${{ secrets.DF_TOKEN }}
@@ -38,16 +36,11 @@ jobs:
 
   deploy:
     name: "Deploy bundle"
-  deploy:
-    name: "Deploy bundle"
     runs-on: ubuntu-latest
     environment: dev
 
     # Run the "validate" job first
-    # Run the "validate" job first
     needs:
-      - validate
-
       - validate
 
     steps:
@@ -56,13 +49,8 @@ jobs:
 
       # Download the Databricks CLI.
       # See https://github.com/databricks/setup-cli
-      # See https://github.com/databricks/setup-cli
       - uses: databricks/setup-cli@main
 
-      # Deploy the bundle to the "dev" target as defined
-      # in the bundle's settings file.
-      - run: databricks bundle deploy
-        working-directory: yellow_nyc
       # Deploy the bundle to the "dev" target as defined
       # in the bundle's settings file.
       - run: databricks bundle deploy
