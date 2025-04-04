@@ -28,7 +28,7 @@ jobs:
       - uses: databricks/setup-cli@main
 
       # Validate the bundle before deploying
-      - run: databricks bundle validate -o json
+      - run: databricks bundle validate
         working-directory: yellow_nyc
         env:
           DATABRICKS_TOKEN: ${{ secrets.DF_TOKEN }}
