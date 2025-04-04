@@ -26,6 +26,8 @@ resources:
               catalog: ${var.catalog}
               schema: ${var.raw_schema}
               table: ${var.table}
+              job_id: {{job_id}}
+              job_run_id: {{run_id}}
 
         - task_key: load_raw_table
           depends_on:
@@ -36,3 +38,5 @@ resources:
               checkpoint_path: "{{tasks.create_env_raw_table.values.checkpoint_path}}"
               file_path: "{{tasks.create_env_raw_table.values.file_path}}"
               full_table_name: "{{tasks.create_env_raw_table.values.full_table_name}}"
+              job_id: "{{job_id}}"
+              job_run_id: "{{parent_run_id}}"
