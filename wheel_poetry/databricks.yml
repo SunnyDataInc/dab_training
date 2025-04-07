@@ -1,0 +1,39 @@
+# This is a Databricks asset bundle definition for wheel_poetry.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: wheel_poetry
+  uuid: bc63e5ef-f3f6-46a0-b18c-8c4cb3ced99d
+
+include:
+  - resources/*.yml
+
+artifacts:
+  consumer:
+    type: whl
+    build: poetry build
+    path: ./my_functions/consumer/
+  mymath:
+    type: whl
+    build: poetry build
+    path: ./my_functions/mymath/
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-56f60291-144c.cloud.databricks.com
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-56f60291-144c.cloud.databricks.com
+      # We explicitly deploy to /Workspace/Users/david.flores@sunnydata.ai to make sure we only have a single copy.
+      root_path: /Workspace/Users/david.flores@sunnydata.ai/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: david.flores@sunnydata.ai
+        level: CAN_MANAGE
