@@ -1,0 +1,23 @@
+# The main job for wheel_uv_serverless.
+resources:
+  jobs:
+    wheel_uv_serverless_job:
+      name: wheel_uv_serverless_job
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      email_notifications:
+        on_failure:
+          - david.flores@sunnydata.ai
+
+      tasks:
+        - task_key: notebook_task
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb
+            base_parameters:
+              wheels_path: "${workspace.artifact_path}/.internal"
+
