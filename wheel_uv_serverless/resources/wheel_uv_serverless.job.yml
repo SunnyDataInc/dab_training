@@ -3,6 +3,9 @@ resources:
   jobs:
     wheel_uv_serverless_job:
       name: wheel_uv_serverless_job
+      tags:
+        group: dabs_tutorial
+        repo: dab_training
 
       trigger:
         # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
