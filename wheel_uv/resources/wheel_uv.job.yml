@@ -1,9 +1,9 @@
-# The main job for wheel_poetry.
+# The main job for wheel_uv.
 resources:
   jobs:
-    wheel_poetry_job:
-      name: wheel_poetry_job
-      description: Dab_training for managing wheels with poetry
+    wheel_uv_job:
+      name: wheel_uv_job
+      description: Dab_training for managing wheels with UV
       tags:
         group: dabs_tutorial
         repo: dab_training
