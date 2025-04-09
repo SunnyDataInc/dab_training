@@ -13,6 +13,8 @@ variables:
       spark_env_vars:
         env_var: ${var.cluster_variable}
   
+   # This cluster needs to be previously created through another asset bundle
+   # or through the Compute IU, or through the Databricks CLI
   existing_cluster:
     description: my existing cluster
     lookup:
