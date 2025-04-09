@@ -11,3 +11,5 @@ The dab_training repo contains examples of Databricks Asset Bundles deployments 
 * **wheel_uv_serverless:** Job deployment that uses two wheels created and managed through **UV** and its compute is **serverless**.
 
 * **yellow_nyc:** Example Job orchestration using auto-loader and public data from the NYC Taxi @ Limousine Commission.
+
+**Note:** The `.github/workflows` contains a cicd.yml file for configuring the dev environment of this repo the bundles are validated and deploy to DEV on PR requests.
