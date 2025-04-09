@@ -12,4 +12,6 @@ The dab_training repo contains examples of Databricks Asset Bundles deployments 
 
 * **yellow_nyc:** Example Job orchestration using auto-loader and public data from the NYC Taxi @ Limousine Commission.
 
-**Note:** The `.github/workflows` contains a cicd.yml file for configuring the dev environment of this repo so the bundles are validated and deployed to DEV on PR requests.
+* **.github/workflows:** contains a cicd.yml file for configuring the dev environment of this repo so the bundles are validated and deployed to DEV on PR requests.<br>
+#### Disclosure:
+The examples have been modified and documentation expanded by David Flores from what he learned in the udemy course [master-of-databricks-asset-bundle](https://www.udemy.com/course/master-of-databricks-asset-bundle/?couponCode=FAFAB8F0EFCE8251E56A) by [Glib Martinenko](https://www.linkedin.com/in/glibmartynenko/). Not to be shared as a commercial transaction.
