@@ -8,6 +8,6 @@ The dab_training repo contains examples of Databricks Asset Bundles deployments 
 
 * **wheel_uv:** Job deployment that uses two wheels created and managed through **UV**.
 
-* **wheel_uv:** Job deployment that uses two wheels created and managed through **UV** and its compute is **serverless**.
+* **wheel_uv_serverless:** Job deployment that uses two wheels created and managed through **UV** and its compute is **serverless**.
 
 * **yellow_nyc:** Example Job orchestration using auto-loader and public data from the NYC Taxi @ Limousine Commission.
