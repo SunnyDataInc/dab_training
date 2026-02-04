@@ -1,0 +1,33 @@
+# This file defines the structure of this project and how it is deployed
+# to production using Databricks Asset Bundles.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: dbt_dbx
+  uuid: e9345c37-89e7-4792-9aee-c434f4cfa51e
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+
+# Deployment targets.
+# The default schema, catalog, etc. for dbt are defined in dbt_profiles/profiles.yml
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-56f60291-144c.cloud.databricks.com
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-56f60291-144c.cloud.databricks.com
+      # We explicitly deploy to /Workspace/Users/david.flores@sunnydata.ai to make sure we only have a single copy.
+      root_path: /Workspace/Users/david.flores@sunnydata.ai/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: david.flores@sunnydata.ai
+        level: CAN_MANAGE
